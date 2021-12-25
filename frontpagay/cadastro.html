@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <h1>Pagay</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
+                    <li>Login</li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="divficha">
+            <form action="">
+                <label class="labelcadastrocliente" for="nomeesobrenome">Nome: </label>
+                <input class="inputcadastrocliente" type="text" name="Nome e sobrenome" id="nomeesobrenome" required>
+
+                <label class="labelcadastrocliente" for="telefone">Telefone:</label>
+                <input class="inputcadastrocliente" type="tel" name="Telefone" id="telefone" required placeholder="(11) 99999-8888">
+
+                <label class="labelcadastrocliente" for="cpf">Cpf:</label>
+                <input class="inputcadastrocliente" type="text" name="cpf" id="cpf" required placeholder="000.000.000-00">
+
+                <label class="labelcadastrocliente" for="email">Email: </label>
+                <input class="inputcadastrocliente" type="email" name="email" id="email" required placeholder="seuemail@dominio.com">
+
+                <label class="labelcadastrocliente" for="senha">Senha:</label>
+                <input class="inputcadastrocliente" type="password" name="senha" id="senha" required>
+                
+                <fieldset class="labelcadastrocliente">
+                    <legend>Tipo de usuario</legend>
+                    <label for="tipousuario">Cliente</label>
+                    <input type="radio" name="tipousuario" value="cliente" id="radiocliente">
+
+                    <label for="tipousuario">Cliente</label>
+                    <input type="radio" name="tipousuario" value="funcionario" id="radiofuncionario">
+                </fieldset>
+
+                <input type="submit" value="Cadastrar" class="botaocadastrocliente">
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div class="divfooter">
+            <p>Pagay, sempre olhando pra voce... sim! pra voce!</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,128 @@
+body {
+    font-family: 'Roboto', sans-serif;;
+}
+
+main {
+}
+
+header {
+    background-color: #FF91A4;
+    padding: 1% 10px;
+}
+
+.header{
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+    color: #FFE7E1;
+}
+
+.header h1 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+header nav {
+    position: absolute;
+    top: 25%;
+    right: 0%;
+}
+
+header nav li {
+    text-transform: uppercase;
+    font-weight: bold;
+    display: inline;
+    margin: 0 0 0 1em;
+}
+
+header a {
+    text-decoration: none;
+}
+
+header a:visited {
+        color: #FFE7E1;
+}
+
+header a:hover {
+    color: #CCEFD5;
+}
+
+.divprincipal {
+    background-color: #FFE7E1;
+    padding: 5% 0;
+    width: 100%;
+}
+
+.divficha {
+    background-color: #FFE7E1;
+    padding: 10% 0;
+}
+
+.divficha label, fieldset legend {
+    font-weight: bold;
+    color: #FF91A4;
+}
+
+.labelcadastrocliente{
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.inputcadastrocliente {
+    display: block;
+    margin: 0 auto 1em;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+
+}
+
+.botaocadastrocliente {
+    background-color: #ccefd5f6;
+    color: white;
+    width: 20%;
+    padding: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 1s;
+    display: block;
+    margin: 0 auto;
+}
+
+.botaocadastrocliente:hover{
+    background-color: #94f7adf6;
+    transform: scale(1.1);
+}
+
+.divfooter {
+    background-color: #FF91A4;
+    text-align: center;
+    padding:  5% 10px;
+}
+
+.divfooter p{
+    font-weight: bold;
+    color: white;
+    font-size: 30px;
+}
+
+.tituloprincipal {
+    font-weight: bold;
+    color: #FF91A4;
+    font-size: 5em;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    padding: 0 0 5%;
+}
+
+.mapaconteudo {
+    display: block;
+    margin: 0 auto;
+}
