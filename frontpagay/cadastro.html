@@ -26,36 +26,36 @@
         </div>
     </header>
     <main>
-        <div class="divficha">
+        <fieldset>
             <form action="">
                 <label class="labelcadastrocliente" for="nomeesobrenome">Nome: </label>
                 <input class="inputcadastrocliente" type="text" name="Nome e sobrenome" id="nomeesobrenome" required>
 
                 <label class="labelcadastrocliente" for="telefone">Telefone:</label>
-                <input class="inputcadastrocliente" type="tel" name="Telefone" id="telefone" required placeholder="(11) 99999-8888">
+                <input class="inputcadastrocliente" type="tel" name="Telefone" id="telefone" required
+                    placeholder="(11) 99999-8888">
 
                 <label class="labelcadastrocliente" for="cpf">Cpf:</label>
-                <input class="inputcadastrocliente" type="text" name="cpf" id="cpf" required placeholder="000.000.000-00">
+                <input class="inputcadastrocliente" type="text" name="cpf" id="cpf" required
+                    placeholder="000.000.000-00">
 
                 <label class="labelcadastrocliente" for="email">Email: </label>
-                <input class="inputcadastrocliente" type="email" name="email" id="email" required placeholder="seuemail@dominio.com">
+                <input class="inputcadastrocliente" type="email" name="email" id="email" required
+                    placeholder="seuemail@dominio.com">
 
                 <label class="labelcadastrocliente" for="senha">Senha:</label>
                 <input class="inputcadastrocliente" type="password" name="senha" id="senha" required>
-                
-                <fieldset class="labelcadastrocliente">
-                    <legend>Tipo de usuario</legend>
-                    <label for="tipousuario">Cliente</label>
-                    <input type="radio" name="tipousuario" value="cliente" id="radiocliente">
 
-                    <label for="tipousuario">Cliente</label>
-                    <input type="radio" name="tipousuario" value="funcionario" id="radiofuncionario">
-                </fieldset>
+                <legend class="labelcadastrocliente">Tipo de usuario</legend>
+                <label class="labelcadastrocliente" for="tipousuario">Cliente</label>
+                <input type="radio" name="tipousuario" value="cliente" id="radiocliente">
+
+                <label class="labelcadastrocliente" for="tipousuario">Cliente</label>
+                <input type="radio" name="tipousuario" value="funcionario" id="radiofuncionario">
 
                 <input type="submit" value="Cadastrar" class="botaocadastrocliente">
             </form>
-        </div>
-        
+        </fieldset>
     </main>
     <footer>
         <div class="divfooter">
@@ -63,4 +63,5 @@
         </div>
     </footer>
 </body>
+
 </html>

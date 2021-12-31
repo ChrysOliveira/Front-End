@@ -53,12 +53,12 @@ header a:hover {
     width: 100%;
 }
 
-.divficha {
+fieldset {
     background-color: #FFE7E1;
     padding: 10% 0;
 }
 
-.divficha label, fieldset legend {
+fieldset label, fieldset legend {
     font-weight: bold;
     color: #FF91A4;
 }
