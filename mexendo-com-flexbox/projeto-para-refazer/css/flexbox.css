@@ -80,7 +80,7 @@
     .cabecalhoPrincipal-nav {
         flex-direction: column;
     }
-    .cabecalhoPrincipal: .conteudoPrincipal-cursos {
+    .cabecalhoPrincipal .conteudoPrincipal-cursos {
         flex-direction: column;
     }
     .cabecalhoPrincipal-nav-link-app {
