@@ -1,25 +1,23 @@
-body{
-
-}
+body {}
 
 #banner {
     width: 100%;
 }
 
-.principal{
+.principal {
     background: #CCCCCC;
     padding: 30px;
 }
 
-.tituloprincipal{
+.tituloprincipal {
     padding-left: 20px;
 }
 
-.titulocentralizado{
+.titulocentralizado {
     text-align: center;
 }
 
-p{
+p {
     text-align: center;
 }
 
@@ -27,7 +25,7 @@ p{
     font-size: 20px;
 }
 
-em strong{
+em strong {
     color: red;
 }
 
@@ -47,6 +45,6 @@ ul {
     margin-right: 15%;
 }
 
-.imagembeneficios{
+.imagembeneficios {
     width: 50%;
 }

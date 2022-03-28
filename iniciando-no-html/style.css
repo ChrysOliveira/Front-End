@@ -24,7 +24,7 @@ nav li {
     margin: 0 0 0 15px;
 }
 
-nav a { 
+nav a {
     text-transform: uppercase;
     color: #000000;
     font-weight: bold;
@@ -32,7 +32,7 @@ nav a {
     text-decoration: none;
 }
 
-nav a:hover{
+nav a:hover {
     color: #C78C19;
     text-decoration: underline;
 }
@@ -56,11 +56,11 @@ nav a:hover{
     border-radius: 10px;
 }
 
-.produtos li:hover{
+.produtos li:hover {
     border-color: #C78C19;
 }
 
-.produtos li:active{
+.produtos li:active {
     border-color: #088c19;
 }
 
@@ -91,20 +91,18 @@ footer {
 
 .copyright {
     color: #FFFFFF;
-    font-size: 13px; 
+    font-size: 13px;
     margin: 20px 0 0;
 }
 
-main {
-    
-}
+main {}
 
 form {
-
     margin: 40px 0;
 }
 
-form label, form legend{
+form label,
+form legend {
     display: block;
     font-size: 20px;
     margin: 0 0 10px;
@@ -133,6 +131,7 @@ form label, form legend{
     transition: 1s;
     cursor: pointer;
 }
+
 .enviar:hover {
     background-color: darkorange;
     transform: scale(1.2);
@@ -148,11 +147,15 @@ thead {
     font-weight: bold;
 }
 
-td , th{
+td,
+th {
     border: 1px solid black;
-    padding: 8px 15px ;
+    padding: 8px 15px;
 }
+
+
 /* css da pagina inicial */
+
 .banner {
     width: 100%;
 }
@@ -207,7 +210,6 @@ td , th{
 .beneficios {
     padding: 3em 0;
     background-color: #888888;
-    
 }
 
 .conteudo-beneficios {
@@ -215,7 +217,7 @@ td , th{
     margin: 0 auto;
 }
 
-.lista-beneficios  {
+.lista-beneficios {
     width: 40%;
     display: inline-block;
     vertical-align: top;
@@ -225,11 +227,11 @@ td , th{
     line-height: 1.5;
 }
 
-.itens:before{
+.itens:before {
     content: "★";
 }
 
-.itens:first-child{
+.itens:first-child {
     font-weight: bold;
 }
 
@@ -237,7 +239,7 @@ td , th{
     width: 60%;
     opacity: 1;
     transition: 400ms;
-    box-shadow: 10px 10px 30px #000000 ;
+    box-shadow: 10px 10px 30px #000000;
 }
 
 .imagem-beneficios:hover {
@@ -250,25 +252,21 @@ td , th{
 }
 
 @media screen and (max-width: 480px) {
-    .caixa, .principal, .conteudo-beneficios, .mapa-conteudo, .video{
+    .caixa,
+    .principal,
+    .conteudo-beneficios,
+    .mapa-conteudo,
+    .video {
         width: auto;
     }
-
     h1 {
         text-align: center;
     }
-    
     nav {
         position: static;
     }
-
-    .lista-beneficios, .imagem-beneficios {
+    .lista-beneficios,
+    .imagem-beneficios {
         width: 100%;
     }
-
-}
-
-.teste1 {
-    width: 60%;
-    margin: 0 auto;
 }
