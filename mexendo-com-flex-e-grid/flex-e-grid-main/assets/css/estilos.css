@@ -25,6 +25,24 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.16);
 }
 
+.cabecalho__menu i::before {
+    content: "\e904";
+    font-size: 24px;
+}
+
+.cabecalho__notificacao i::before {
+    content: "\e906";
+    font-size: 24px;
+}
+
+.cabecalho__logo {
+    width: 40px;
+}
+
+.cabecalho__perfil {
+    display: none;
+}
+
 @media screen and (min-width: 1440px) {
     .cabecalho {
         background-color: #1D232A;
@@ -64,26 +82,6 @@ body {
         content: "\e90d";
         color: #FFFFFF;
         font-size: 1.5rem;
-    }
-}
-
-.cabecalho__menu i::before {
-    content: "\e904";
-    font-size: 24px;
-}
-
-.cabecalho__notificacao i::before {
-    content: "\e906";
-    font-size: 24px;
-}
-
-.cabecalho__logo {
-    width: 40px;
-}
-
-@media screen and (max-width: 1440px) {
-    .cabecalho__perfil {
-        display: none;
     }
 }
 
@@ -173,8 +171,8 @@ body {
 
 @media screen and (min-width: 1440px) {
     .principal {
-        display: grid;
         grid-template-columns: auto 1fr auto;
+        grid-template-areas: "titulo-pagina titulo-pagina titulo-pagina" "video-destaque video-destaque videos-recentes" "secao-maisVistos secao-maisVistos secao-maisVistos" "novas-artes destaque-novaArte destaque-novaArte" "secao-camisasRecentes secao-camisasRecentes secao-camisasRecentes";
         padding: 16px 32px;
         grid-column: 2;
     }
@@ -276,7 +274,7 @@ body {
     display: none;
 }
 
-@media screen and (min-width:1440px) {
+@media screen and (min-width: 1440px) {
     .cartao--recentes {
         display: grid;
         grid-template-columns: auto auto;
@@ -318,4 +316,32 @@ body {
         font-size: 0.8rem;
         color: #95999C;
     }
+}
+
+.titulo-pagina {
+    grid-area: titulo-pagina;
+}
+
+.video-destaque {
+    grid-area: video-destaque;
+}
+
+.videos-recentes {
+    grid-area: videos-recentes;
+}
+
+.secao-maisVistos {
+    grid-area: secao-maisVistos;
+}
+
+.novas-artes {
+    grid-area: novas-artes;
+}
+
+.destaque-novaArte {
+    grid-area: destaque-novaArte;
+}
+
+.secao-camisasRecentes {
+    grid-area: secao-camisasRecentes;
 }
