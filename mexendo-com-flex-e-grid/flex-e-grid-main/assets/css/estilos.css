@@ -194,6 +194,10 @@ body {
     margin-bottom: 16px;
 }
 
+.cartao__imagem-desktop {
+    display: none;
+}
+
 .cartao__conteudo {
     padding: 16px;
     display: grid;
@@ -275,6 +279,16 @@ body {
 }
 
 @media screen and (min-width: 1440px) {
+    .cartao__imagem-mobile {
+        display: none;
+    }
+    .cartao__imagem-desktop {
+        display: block;
+    }
+    .cartao__botao--destaque {
+        grid-column: auto;
+        padding: 16px 8px;
+    }
     .cartao--recentes {
         display: grid;
         grid-template-columns: auto auto;
@@ -283,6 +297,7 @@ body {
         width: 256px;
         padding: 16px;
         box-sizing: border-box;
+        align-self: flex-start;
     }
     .cartao--recentes .cartao__titulo {
         grid-column: auto;
@@ -316,32 +331,34 @@ body {
         font-size: 0.8rem;
         color: #95999C;
     }
+    .secao {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .titulo-secao {
+        grid-column: span 4;
+    }
 }
 
-.titulo-pagina {
-    grid-area: titulo-pagina;
-}
-
-.video-destaque {
-    grid-area: video-destaque;
-}
-
-.videos-recentes {
-    grid-area: videos-recentes;
-}
-
-.secao-maisVistos {
-    grid-area: secao-maisVistos;
-}
-
-.novas-artes {
-    grid-area: novas-artes;
-}
-
-.destaque-novaArte {
-    grid-area: destaque-novaArte;
-}
-
-.secao-camisasRecentes {
-    grid-area: secao-camisasRecentes;
+@media screen and (min-width: 1440px) {
+    .titulo-pagina {
+        grid-area: titulo-pagina;
+    }
+    .video-destaque {
+        grid-area: video-destaque;
+    }
+    .videos-recentes {
+        grid-area: videos-recentes;
+    }
+    .secao-maisVistos {
+        grid-area: secao-maisVistos;
+    }
+    .novas-artes {
+        grid-area: novas-artes;
+    }
+    .destaque-novaArte {
+        grid-area: destaque-novaArte;
+    }
+    .secao-camisasRecentes {
+        grid-area: secao-camisasRecentes;
+    }
 }
