@@ -34,35 +34,16 @@ class NegociacaoController {
 
         let service = new NegociacaoService()
 
-        service.obtemNegociacoesSemana((erro, resposta) => {
-
-            if (erro) {
-                this._mensagem.texto = 'Nao foi possivel imporatar as negociacoes'
-                return
-            }
-            resposta.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
-
-            service.obtemNegociacoesSemanaAnterior((erro, resposta) => {
-
-                if (erro) {
-                    this._mensagem.texto = 'Nao foi possivel imporatar as negociacoes'
-                    return
+        let promise = service.obtemNegociacoesSemana()
+        promise
+            .then(
+                negociacoes => {
+                    negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
+                    this._mensagem.texto = 'Negociacoes importadas com sucesso'
                 }
-                resposta.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
 
-                service.obtemNegociacoesSemanaRetrasada((erro, resposta) => {
-
-                    if (erro) {
-                        this._mensagem.texto = 'Nao foi possivel imporatar as negociacoes'
-                        return
-                    }
-                    resposta.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
-                    this._mensagem.texto = 'Negociacao adiciona com sucesso.'
-                })
-            })
-        })
-
-
+            )
+            .catch(error => this._mensagem.texto = error)
     }
 
     limpa(event) {
