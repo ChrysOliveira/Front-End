@@ -34,16 +34,16 @@ class NegociacaoController {
 
         let service = new NegociacaoService()
 
-        let promise = service.obtemNegociacoesSemana()
-        promise
-            .then(
-                negociacoes => {
-                    negociacoes.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
-                    this._mensagem.texto = 'Negociacoes importadas com sucesso'
-                }
+        Promise.all([
+                service.obtemNegociacoesSemana(),
+                service.obtemNegociacoesSemanaAnterior(),
+                service.obtemNegociacoesSemanaRetrasada()
+            ]).then(negociacoes => {
+                negociacoes.reduce((achatado, atual) => achatado.concat(atual), [])
+                    .forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
+            })
+            .catch(erro => this._mensagem.texto = erro)
 
-            )
-            .catch(error => this._mensagem.texto = error)
     }
 
     limpa(event) {
