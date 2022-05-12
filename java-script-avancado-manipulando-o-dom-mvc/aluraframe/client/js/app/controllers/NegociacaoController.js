@@ -8,14 +8,13 @@ class NegociacaoController {
         this._inputQuantidade = $('#quantidade')
         this._inputValor = $('#valor')
 
-        this._listaNegociacoes = ProxyFactory.create(new ListaNegociacoes(), ['adiciona', 'esvazia'], model => this._negociacoesView.update(model))
-
         this._negociacoesView = new NegociacoesView($('#negociacoesView'))
-        this._negociacoesView.update(this._listaNegociacoes)
 
-        this._mensagem = new Mensagem()
+        this._listaNegociacoes = new Bind(new ListaNegociacoes(), this._negociacoesView, 'adiciona', 'esvazia')
+
         this._mensagemView = new MensagemView($('#mensagemView'))
-        this._mensagemView.update(this._mensagem)
+
+        this._mensagem = new Bind(new Mensagem(), this._mensagemView, 'texto')
     }
 
     adiciona(event) {
@@ -25,9 +24,45 @@ class NegociacaoController {
         this._listaNegociacoes.adiciona(this._criaNegociacao())
 
         this._mensagem.texto = 'Negociacao adicionada com sucesso'
-        this._mensagemView.update(this._mensagem)
 
         this._limpaFormulario()
+    }
+
+    importaNegociacoes(event) {
+
+        event.preventDefault()
+
+        let service = new NegociacaoService()
+
+        service.obtemNegociacoesSemana((erro, resposta) => {
+
+            if (erro) {
+                this._mensagem.texto = 'Nao foi possivel imporatar as negociacoes'
+                return
+            }
+            resposta.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
+
+            service.obtemNegociacoesSemanaAnterior((erro, resposta) => {
+
+                if (erro) {
+                    this._mensagem.texto = 'Nao foi possivel imporatar as negociacoes'
+                    return
+                }
+                resposta.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
+
+                service.obtemNegociacoesSemanaRetrasada((erro, resposta) => {
+
+                    if (erro) {
+                        this._mensagem.texto = 'Nao foi possivel imporatar as negociacoes'
+                        return
+                    }
+                    resposta.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao))
+                    this._mensagem.texto = 'Negociacao adiciona com sucesso.'
+                })
+            })
+        })
+
+
     }
 
     limpa(event) {
@@ -37,7 +72,6 @@ class NegociacaoController {
         this._listaNegociacoes.esvazia()
 
         this._mensagem.texto = 'Historico de negociacao apagada'
-        this._mensagemView.update(this._mensagem)
 
         this._limpaFormulario()
     }
