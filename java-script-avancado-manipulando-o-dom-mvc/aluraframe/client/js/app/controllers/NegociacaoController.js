@@ -46,19 +46,6 @@ class NegociacaoController {
 
     }
 
-    ordena(coluna) {
-
-        if (this._ordemAtual == coluna) {
-
-            this._listaNegociacoes.inverteOrdem()
-        } else {
-
-            this._listaNegociacoes.ordena((a, b) => a[coluna] - b[coluna])
-        }
-
-        this._ordemAtual = coluna
-    }
-
     limpa(event) {
 
         event.preventDefault()
