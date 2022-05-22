@@ -10,22 +10,29 @@ class NegociacaoController {
         this._inputQuantidade = $('#quantidade')
         this._inputValor = $('#valor')
 
-        this._negociacoesView = new NegociacoesView($('#negociacoesView'))
-        this._listaNegociacoes = new Bind(new ListaNegociacoes(), this._negociacoesView, 'adiciona', 'esvazia', 'ordena', 'inverteOrdem')
+        this._listaNegociacoes = new Bind(new ListaNegociacoes(), new NegociacoesView($('#negociacoesView')), 'adiciona', 'esvazia', 'ordena', 'inverteOrdem')
 
-        this._mensagemView = new MensagemView($('#mensagemView'))
-        this._mensagem = new Bind(new Mensagem(), this._mensagemView, 'texto')
+        this._mensagem = new Bind(new Mensagem(), new MensagemView($('#mensagemView')), 'texto')
     }
 
     adiciona(event) {
 
         event.preventDefault()
 
-        this._listaNegociacoes.adiciona(this._criaNegociacao())
+        ConnectionFactory.getConnection().then(conexao => {
 
-        this._mensagem.texto = 'Negociacao adicionada com sucesso'
+            new NegociacaoDao(conexao)
+                .adiciona(this._criaNegociacao())
+                .then(() => {
 
-        this._limpaFormulario()
+                    this._listaNegociacoes.adiciona(this._criaNegociacao())
+
+                    this._mensagem.texto = 'Negociacao adicionada com sucesso'
+
+                    this._limpaFormulario()
+                })
+                .catch(mensagem => this._mensagem = mensagem)
+        })
     }
 
     importaNegociacoes(event) {
@@ -60,8 +67,8 @@ class NegociacaoController {
     _criaNegociacao() {
         return new Negociacao(
             DateHelper.textoParaData(this._inputData.value),
-            this._inputQuantidade.value,
-            this._inputValor.value
+            parseInt(this._inputQuantidade.value),
+            parseFloat(this._inputValor.value)
         )
     }
 

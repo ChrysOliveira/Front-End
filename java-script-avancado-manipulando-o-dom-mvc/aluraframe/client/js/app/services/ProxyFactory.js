@@ -8,7 +8,7 @@ class ProxyFactory {
                     return function() {
                         console.log(`Interceptando ${prop}`)
                         Reflect.apply(target[prop], target, arguments)
-                        return action(target)
+                        return action(target) //this target is the original object that is being proxying
                     }
                 }
                 return Reflect.get(target, prop, receiver)
