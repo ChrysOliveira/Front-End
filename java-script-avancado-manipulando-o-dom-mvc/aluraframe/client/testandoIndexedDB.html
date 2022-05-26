@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testando index db</title>
+</head>
+
+<body>
+
+</body>
+
+<script src="js/app/models/Negociacao.js"></script>
+<script>
+    var openRequest = window.indexedDB.open('aluraframe', 4)
+
+    var connection
+
+    openRequest.onupgradeneeded = e => {
+
+        console.log('Banco atualizado ou criado')
+
+        connection = e.target.result
+
+        if (connection.objectStoreNames.contains('negociacoes'))
+            connection.deleteObjectStore('negociacoes')
+
+        connection.createObjectStore('negociacoes', {
+            autoIncrement: true
+        })
+    }
+
+    openRequest.onsuccess = e => {
+
+        console.log('Conexao estabelecida com sucesso')
+
+        connection = e.target.result
+    }
+
+    openRequest.onerror = e => {
+
+        console.log('Nao foi possivel estabelecer a conexao')
+    }
+
+    function adiciona() {
+
+        let transaction = connection.transaction(['negociacoes'], 'readwrite')
+
+        let objStore = transaction.objectStore('negociacoes')
+
+        let result = objStore.add(new Negociacao(new Date(), 1, 200))
+
+        result.onsuccess = e => {
+
+            console.log('Objeto gravado no banco')
+        }
+
+        result.onerror = e => {
+
+            console.log('Nao foi possivel gravar o objeto no banco')
+        }
+    }
+
+    function listaNegociacoes() {
+
+        let transaction = connection.transaction(['negociacoes'], 'readonly')
+
+        let objStore = transaction.objectStore('negociacoes')
+
+        let cursor = objStore.openCursor()
+
+        let listaDeNegociacoes = []
+
+        cursor.onsuccess = e => {
+
+
+            let posicaoAtual = e.target.result
+
+            if (posicaoAtual) {
+
+                let valorAtual = posicaoAtual.value
+
+                listaDeNegociacoes.push(new Negociacao(valorAtual._data, valorAtual._quantidade, valorAtual._valor))
+
+                posicaoAtual.continue()
+            } else {
+
+                console.log(listaDeNegociacoes)
+            }
+
+        }
+
+        cursor.onerror = e => {
+
+            console.log(e.target.error)
+        }
+    }
+</script>
+
+</html>
