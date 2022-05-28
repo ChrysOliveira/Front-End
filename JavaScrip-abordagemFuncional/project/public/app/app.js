@@ -1,9 +1,21 @@
-import { log } from './utils/Promise-helpers.js';
+import { log, timeoutPromise, retry } from './utils/Promise-helpers.js';
 import './utils/Array-helpers.js';
 import { notasService as service } from './nota/Service.js';
+import { takeUntil, debounceTime, partialize, pipe } from './utils/Operators.js'
+import { EventEmitter } from './utils/Event-emitter.js'
 
-document.querySelector('#myButton')
-    .onclick = () =>
-    service.sumItems('2143')
-    .then(console.log)
+const operations = pipe(
+    partialize(takeUntil, 3),
+    partialize(debounceTime, 500)
+);
+
+const action = operations(() =>
+    retry(3, 3000, () => timeoutPromise(200, service.sumItems('2143')))
+    .then(total => EventEmitter.emit('itensTotalizamos', total))
     .catch(console.log)
+);
+
+
+document
+    .querySelector('#myButton')
+    .onclick = action;
