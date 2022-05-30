@@ -1,16 +1,30 @@
 var tempoInicial = $('.tempo-digitacao').text();
+var campoDigitacao = $('.campo-digitar');
+var botaoReiniciar = $('.botao-reiniciar');
+var frase = $('.frase')
+
+
+$( //essa linha eh a mesma coisa de $(document).ready(function::Function)
+    () => {
+
+        atualizaTamanhoFrase();
+        inicializaContadores();
+        inicializaCronometro();
+        inicializaMarcadores();
+        botaoReiniciar.click(reiniciarGame).attr('disabled', true);
+    });
+
 
 function atualizaTamanhoFrase() {
 
 
-    var frase = $('.frase').text();
-    var quantidadePalavras = frase.split(' ').length;
+    const fraseTexto = frase.text()
+    const quantidadePalavras = fraseTexto.split(' ').length;
 
-    var tamanhoFrase = $('.tamanhoDaFrase');
+    const tamanhoFrase = $('.tamanhoDaFrase');
     tamanhoFrase.text(quantidadePalavras);
 }
 
-var campoDigitacao = $('.campo-digitar');
 
 function inicializaContadores() {
 
@@ -29,7 +43,9 @@ function inicializaContadores() {
 function inicializaCronometro() {
 
     campoDigitacao.one('focus', () => {
-        var tempoRestante = $('.tempo-digitacao').text()
+
+        let tempoRestante = $('.tempo-digitacao').text()
+        botaoReiniciar.attr('disabled', true);
 
         const cronometroID = setInterval(() => {
                 --tempoRestante;
@@ -40,32 +56,45 @@ function inicializaCronometro() {
                     campoDigitacao.attr('disabled', true);
 
                     clearInterval(cronometroID)
+
+                    botaoReiniciar.attr('disabled', false)
+
+                    campoDigitacao.addClass('campo-desativado');
                 }
             },
             1000)
     })
 }
 
-campoDigitacao.one('focus', () => {
+function inicializaMarcadores() {
 
-    const cronometroID = setInterval(() => {
-            --tempoRestante;
-            $('.tempo-digitacao').text(tempoRestante);
+    campoDigitacao.on('input', () => {
 
-            if (tempoRestante <= 0) {
+        const fraseTexto = frase.text();
 
-                campoDigitacao.attr('disabled', true);
+        const textoDigitando = campoDigitacao.val();
 
-                clearInterval(cronometroID)
-            }
-        },
-        1000)
-})
+        const pedacoFraseComparar = fraseTexto.substr(0, textoDigitando.length);
 
-$('.botao-reiniciar').click(() => {
+        const valida = textoDigitando == pedacoFraseComparar; //poderia usar tambem: frase.startsWith(textoDigitando);
+
+        campoDigitacao.toggleClass('borda-verde', valida);
+        campoDigitacao.toggleClass('borda-vermelha', !valida);
+
+    })
+}
+
+
+function reiniciarGame() {
+
+    campoDigitacao.removeClass('campo-desativado');
+    campoDigitacao.removeClass('borda-verde');
+    campoDigitacao.removeClass('borda-vermelha');
 
     $('.tempo-digitacao').text(tempoInicial);
     $('.campo-digitar').attr('disabled', false).val('');
     $('.contador-caracteres').text('0');
     $('.contador-palavras').text('0');
-})
+
+    inicializaCronometro();
+}

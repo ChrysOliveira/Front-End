@@ -4,25 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Chrys Typer</title>
+    <link rel="stylesheet" href="css/libs/materialize.min.css">
+    <link rel="stylesheet" href="css/libs/google-fonts.css">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body>
-    <h1>Chrys Typer</h1>
+    <div class="container">
 
-    <p class="frase">Essa frase tem seis belas palavras</p>
+        <h1 class="center">Chrys Typer</h1>
 
-    <ul class="informacoes">
-        <li><span class="tamanhoDaFrase">5</span> palavras</li>
-        <li><span class="tempo-digitacao">10</span> segundos</li>
-    </ul>
+        <p class="frase center">Abacate banana e pera.</p>
 
-    <textarea class="campo-digitar" cols="30" rows="10"></textarea>
+        <ul class="informacoes center">
+            <li>
+                <i class="small material-icons icones">description</i>
+                <span class="tamanhoDaFrase">5</span> palavras
+            </li>
+            <li>
+                <i class="small material-icons icones">query_builder</i>
+                <span class="tempo-digitacao">10</span> segundos
+            </li>
+        </ul>
 
-    <ul class="pontuacao">
-        <li><span class="contador-caracteres">0</span> caracteres</li>
-        <li><span class="contador-palavras">0</span> palavras</li>
-    </ul>
-    <button class="botao-reiniciar">Reiniciar Jogo</button>
+        <textarea class="campo-digitar" cols="30" rows="10"></textarea>
+
+        <div class="botoes">
+            <a class="btn-floating btn-large waves-effect waves-light red botao-reiniciar">
+                <i class="material-icons">restore</i>
+            </a>
+        </div>
+
+        <ul class="pontuacao center">
+            <li><span class="contador-caracteres">0</span> caracteres</li>
+            <li><span class="contador-palavras">0</span> palavras</li>
+        </ul>
+
+    </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/main.js"></script>
