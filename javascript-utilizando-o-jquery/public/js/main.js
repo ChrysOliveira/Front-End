@@ -70,6 +70,18 @@ function inicializaCronometro() {
     })
 }
 
+function finalizaJogo() {
+
+    campoDigitacao.attr('disabled', true);
+
+    botaoReiniciar.attr('disabled', false)
+
+    campoDigitacao.addClass('campo-desativado');
+
+    inserePlacar();
+
+}
+
 function inicializaMarcadores() {
 
     campoDigitacao.on('input', () => {
