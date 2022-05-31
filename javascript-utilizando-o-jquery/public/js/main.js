@@ -3,7 +3,6 @@ var campoDigitacao = $('.campo-digitar');
 var botaoReiniciar = $('.botao-reiniciar');
 var frase = $('.frase')
 
-
 $( //essa linha eh a mesma coisa de $(document).ready(function::Function)
     () => {
 
@@ -14,9 +13,7 @@ $( //essa linha eh a mesma coisa de $(document).ready(function::Function)
         botaoReiniciar.click(reiniciarGame).attr('disabled', true);
     });
 
-
 function atualizaTamanhoFrase() {
-
 
     const fraseTexto = frase.text()
     const quantidadePalavras = fraseTexto.split(' ').length;
@@ -24,7 +21,6 @@ function atualizaTamanhoFrase() {
     const tamanhoFrase = $('.tamanhoDaFrase');
     tamanhoFrase.text(quantidadePalavras);
 }
-
 
 function inicializaContadores() {
 
@@ -53,17 +49,24 @@ function inicializaCronometro() {
 
                 if (tempoRestante <= 0) {
 
-                    campoDigitacao.attr('disabled', true);
-
-                    clearInterval(cronometroID)
-
-                    botaoReiniciar.attr('disabled', false)
-
-                    campoDigitacao.addClass('campo-desativado');
+                    clearInterval(cronometroID);
+                    finalizaJogo();
                 }
             },
             1000)
     })
+}
+
+function finalizaJogo() {
+
+    campoDigitacao.attr('disabled', true);
+
+    botaoReiniciar.attr('disabled', false)
+
+    campoDigitacao.addClass('campo-desativado');
+
+    inserePlacar();
+
 }
 
 function inicializaMarcadores() {
@@ -83,7 +86,6 @@ function inicializaMarcadores() {
 
     })
 }
-
 
 function reiniciarGame() {
 
