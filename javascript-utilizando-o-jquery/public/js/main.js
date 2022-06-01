@@ -11,6 +11,15 @@ $( //essa linha eh a mesma coisa de $(document).ready(function::Function)
         inicializaCronometro();
         inicializaMarcadores();
         botaoReiniciar.click(reiniciarGame).attr('disabled', true);
+
+        $("#usuarios").selectize({
+            create: true,
+            sortField: "text"
+        });
+
+        $('.tooltip').tooltipster({
+            trigger: 'custom'
+        });
     });
 
 function atualizaTamanhoFrase() {

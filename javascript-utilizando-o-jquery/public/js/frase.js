@@ -35,20 +35,22 @@ function buscaFrase() {
         id: fraseId
     }
 
-    $.get('http://localhost:3000/frases', dados, trocaFrase).fail(function() {
+    $.get('http://localhost:3000/frases', dados, trocaFrase)
+        .fail(function() {
 
-        const textoErro = $('.texto-erro');
-        textoErro.fadeIn();
+            const textoErro = $('.texto-erro');
+            textoErro.fadeIn();
 
-        setTimeout(() => textoErro.fadeOut(), 2000);
-    }).always(() => $('.spinner').toggle());
+            setTimeout(() => textoErro.fadeOut(), 2000);
+        })
+        .always(() => $('.spinner').toggle());
 
 }
 
 function trocaFrase(data) {
 
     const frase = $('.frase')
-    frase.text(data.text);
+    frase.text(data.texto);
 
     atualizaTamanhoFrase();
     atualizaTempoParaFrase(data.tempo)

@@ -1,11 +1,12 @@
 $('.botao-placar').click(exibePlacar);
+$('.botao-sync').click(sincronizaPlacar);
 
 function inserePlacar() {
 
     const corpoTabela = $('.placar').find('tbody');
 
     const numeroDePalavras = $('.contador-palavras').text();
-    const usuario = 'Chrystian';
+    const usuario = $('#usuarios').val();
 
     const linha = criaLinha(usuario, numeroDePalavras);
 
@@ -65,4 +66,55 @@ function exibePlacar() {
 
     $('.placar').stop().slideToggle(1000);
     scrollPlacar();
+}
+
+function sincronizaPlacar() {
+    const placar = [];
+
+    const linhas = $('tbody>tr');
+
+    linhas.each(function() {
+
+        const usuario = $(this).find('td:nth-child(1)').text();
+        const palavras = $(this).find('td:nth-child(2)').text();
+
+        var score = {
+            usuario: usuario,
+            pontos: palavras
+        };
+
+        placar.push(score);
+    })
+
+    const dados = {
+        placar: placar
+    }
+
+    $.post('http://localhost:3000/placar', dados, () => {
+
+        console.log('salvou os dados no servidor')
+
+        $('.tooltip').tooltipster('open').tooltipster('content', 'Sucesso ao sync');
+    }).fail(() => {
+        $('.tooltip').tooltipster('open').tooltipster('content', 'Falha ao sync');
+    })
+
+    .always(() => {
+
+        setTimeout(() => $('.tooltip').tooltipster('close'), 1000);
+    });
+
+}
+
+function atualizaPlacar() {
+
+    $.get('http://localhost:3000/placar', function(data) {
+
+        $(data).each(function() {
+
+            var linha = criaLinha(this.usuario, this.pontos);
+            linha.find('.botao-remover').click(removeLinha);
+            $('tbody').appen(linha);
+        })
+    })
 }
