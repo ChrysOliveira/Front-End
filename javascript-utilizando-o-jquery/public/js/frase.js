@@ -2,7 +2,6 @@ $('.botao-frase').click(fraseAleatoria);
 $('.botao-frase-id').click(buscaFrase);
 
 function fraseAleatoria() {
-
     $('.spinner').toggle();
 
     $.get('http://localhost:3000/frases', trocaFraseAleatoria).fail(function() {
@@ -12,6 +11,7 @@ function fraseAleatoria() {
 
         setTimeout(() => textoErro.fadeOut(), 2000);
     }).always(() => $('.spinner').toggle());
+    $.get('http://localhost:3000/frases', trocaFraseAleatoria);
 }
 
 function trocaFraseAleatoria(data) {
@@ -51,6 +51,5 @@ function trocaFrase(data) {
     frase.text(data.text);
 
     atualizaTamanhoFrase();
-    atualizaTempoParaFrase(data.tempo);
-
+    atualizaTempoParaFrase(data.tempo)
 }
